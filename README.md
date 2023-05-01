@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Whipmart
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app was made for final project for JavaScript 4 course at Fanshawe.
 
 ## Available Scripts
 
