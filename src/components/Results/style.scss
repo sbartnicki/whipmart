@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.resultsBox {
+  background-color: $secondary;
+  width: calc(70% - 30px);
+  height: calc(100vh - 190px);
+  padding: 0 10px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  box-shadow: 0px 0px 20px $dark;
+
+  @include mobile {
+    width: 100%;
+    min-height: 100%;
+  }
+
+  h2 {
+    height: 70px;
+    margin: unset;
+    padding: unset;
+    padding-top: 10px;
+    box-sizing: border-box;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}

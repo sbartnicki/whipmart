@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+
+.notFound {
+  height: calc(100% - 190px);
+  background-color: $dark;
+  width: 100%;
+  margin: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $light;
+
+  button {
+    background-color: $accent;
+    border: 1px solid $dark;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: white;
+  }
+
+  h2 {
+    font-size: 5rem;
+  }
+  p {
+    font-size: 2rem;
+  }
+}

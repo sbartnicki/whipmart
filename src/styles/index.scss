@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;700&display=swap');
+@import './variables.scss';
+
+body {
+  font-family: $body-font;
+  margin: unset;
+  background-color: $primary;
+  height: 100%;
+
+  #root {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    gap: 30px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $header-font;
+  }
+
+  input,
+  select {
+    background-color: unset;
+    border: 1px solid $dark;
+    border-radius: 5px;
+
+    &[type='submit'] {
+      background-color: $accent;
+      width: 100px;
+      padding: 5px 0;
+      margin-left: auto;
+      color: white;
+
+      &:hover {
+        background-color: $primary;
+        cursor: pointer;
+      }
+
+      &:active {
+        background-color: $light;
+      }
+    }
+  }
+
+  ::-webkit-scrollbar {
+    background-color: $light;
+
+    &-thumb {
+      background-color: $dark;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+$header-font: 'Bebas Neue', cursive;
+$body-font: 'Poppins', sans-serif;
+
+$primary: #403d39;
+$secondary: #ccc5b9;
+$accent: #eb5e28;
+$light: #fffcf2;
+$dark: #252422;
+
+// Breakpoints
+@mixin breakpoint($max-width) {
+  @media only screen and (max-width: $max-width) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @include breakpoint(670px) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @include breakpoint(720px) {
+    @content;
+  }
+}

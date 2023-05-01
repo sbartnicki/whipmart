@@ -1,0 +1,12 @@
+@import '../../styles/variables.scss';
+
+.notif {
+  background-color: $dark;
+  width: 100%;
+  margin: 0 30px;
+
+  div {
+    color: $secondary;
+    padding: 20px;
+  }
+}

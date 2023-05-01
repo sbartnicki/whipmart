@@ -1,0 +1,44 @@
+@import '../../styles/variables.scss';
+
+.searchResultsPage {
+  width: 100%;
+  height: calc(100vh - 190px);
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+
+  @include mobile {
+    flex-direction: column;
+    row-gap: 30px;
+    padding: 0 30px;
+    box-sizing: border-box;
+    height: fit-content;
+  }
+
+  .search {
+    width: 30%;
+    height: calc(100vh - 190px);
+
+    @include mobile {
+      width: 100%;
+      height: fit-content;
+    }
+
+    h2 {
+      height: 70px;
+      padding: unset;
+      padding-top: 10px;
+    }
+
+    form {
+      flex-wrap: nowrap;
+      padding-bottom: 30px;
+      height: auto;
+      row-gap: 15px;
+
+      .inputContainer {
+        width: 100%;
+      }
+    }
+  }
+}

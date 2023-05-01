@@ -1,0 +1,55 @@
+@import '../../styles/variables.scss';
+
+.carPage {
+  width: 100%;
+  height: calc(100% - 190px);
+  margin: 0 30px;
+  background-color: $secondary;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 20px $dark;
+
+  .poster {
+    display: flex;
+    width: 100%;
+
+    img {
+      width: 85%;
+      height: 400px;
+      object-fit: cover;
+      object-position: center 60%;
+    }
+
+    div {
+      width: 15%;
+      font-family: $header-font;
+      font-size: 2rem;
+      writing-mode: vertical-lr;
+      rotate: -180deg;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .details {
+    width: 85%;
+    display: flex;
+    align-items: center;
+    padding: 70px 0;
+  }
+
+  .price {
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: right;
+  }
+}
+
+.empty {
+  display: flex;
+  color: $light;
+  gap: 50px;
+  flex-direction: column;
+  align-items: center;
+}
