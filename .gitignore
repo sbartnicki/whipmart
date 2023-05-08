@@ -9,7 +9,6 @@
 /coverage
 
 # secrets
-config.js
 
 # production
 /build
