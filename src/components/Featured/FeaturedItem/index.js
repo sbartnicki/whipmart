@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import './style.scss';
 
+/**
+ * Displays tile of a single featured item
+ */
 const FeaturedItem = ({ listing }) => {
   const navigate = useNavigate();
 

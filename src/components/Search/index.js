@@ -52,6 +52,9 @@ const Search = ({ setMessage, make, from, to, model, modelsPrev }) => {
     }
   }, [modelsPrev, models.length]);
 
+  /**
+   * Fetches the models based on selected Make
+   */
   const handleMakeSelect = (e) => {
     if (e.target.value !== 'default') {
       setCarQuery({ ...carQuery, make: e.target.value, model: '' });
@@ -80,6 +83,9 @@ const Search = ({ setMessage, make, from, to, model, modelsPrev }) => {
     }
   };
 
+  /**
+   * Adds a selected model to search query object
+   */
   const handleModelSelect = (e) => {
     if (e.target.value !== 'default') {
       setCarQuery({ ...carQuery, model: e.target.value });
@@ -88,6 +94,9 @@ const Search = ({ setMessage, make, from, to, model, modelsPrev }) => {
     }
   };
 
+  /**
+   * Redirects user to search results page and passes the search query along to that page
+   */
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (!carQuery.make || !carQuery.from || !carQuery.to) {
@@ -97,6 +106,9 @@ const Search = ({ setMessage, make, from, to, model, modelsPrev }) => {
     navigate('/results', { state: { ...carQuery, modelsPrev: models } });
   };
 
+  /**
+   * Generates JSX to display dropdown options for all models
+   */
   const generateModels = () => {
     if (modelsPrev && models.length === 0) {
       return modelsPrev.map((model, index) => {

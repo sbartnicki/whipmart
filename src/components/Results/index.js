@@ -2,6 +2,9 @@ import Loader from '../Loader';
 import ResultItem from './ResultItem';
 import './style.scss';
 
+/**
+ * Displays search Results provided via props
+ */
 const Results = ({ results, isLoading }) => {
   return (
     <div className="resultsBox">

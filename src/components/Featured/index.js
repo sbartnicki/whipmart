@@ -4,6 +4,9 @@ import Loader from '../Loader';
 import './style.scss';
 import { loadAllListings } from '../../database';
 
+/**
+ * Displays only listings that have featured equal true
+ */
 const Featured = () => {
   const [listings, setListings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

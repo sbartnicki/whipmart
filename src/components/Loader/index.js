@@ -1,5 +1,8 @@
 import './style.scss';
 
+/**
+ * Displays animation, used when app is waiting for data
+ */
 const Loader = () => {
   // Generating 10 divs that will be animated via scss
   const generateDivs = () => {

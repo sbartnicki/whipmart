@@ -83,6 +83,10 @@ const SellForm = ({ setMessage, setIsLoading }) => {
       }
     }
   };
+
+  /**
+   * After Make is selected fetches all models for that make and saves them to state
+   */
   const handleMakeSelect = (e) => {
     if (e.target.value !== 'default') {
       setNewListing({ ...newListing, make: e.target.value });
@@ -111,10 +115,16 @@ const SellForm = ({ setMessage, setIsLoading }) => {
     }
   };
 
+  /**
+   * Adds a selected model to new listing object
+   */
   const handleModelSelect = (e) => {
     setNewListing({ ...newListing, model: e.target.value });
   };
 
+  /**
+   * Displays a notification once image file was selected
+   */
   const handleImageChange = () => {
     setMessage('Image selected');
   };

@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import './style.scss';
 
+/**
+ * Main website header
+ */
 const Header = () => {
   // Logo | Add listing | Login | Sign Up | My Account | Wallet connect
   return (

@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import './style.scss';
 
+/**
+ * Displays a single result car item
+ */
 const ResultItem = ({ result }) => {
   const navigate = useNavigate();
 
