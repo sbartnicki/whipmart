@@ -3,6 +3,10 @@ import './style.scss';
 import { saveListingToDB, uploadImage } from '../../database';
 import axios from 'axios';
 
+/**
+ * Displays a box that allows to create a new listing
+ * with provided parameters and image
+ */
 const SellForm = ({ setMessage, setIsLoading }) => {
   const [newListing, setNewListing] = useState({
     featured: false,
@@ -15,21 +19,31 @@ const SellForm = ({ setMessage, setIsLoading }) => {
 
   const inputFile = useRef();
 
+  // TODO: extract axios logic to avoid repeating code, set axios config
   useEffect(() => {
     axios
-      .get('https://www.carqueryapi.com/api/0.3/?cmd=getMakes')
+      .get('https://car-api2.p.rapidapi.com/api/makes', {
+        params: {
+          direction: 'asc',
+          sort: 'name',
+        },
+        headers: {
+          'X-RapidAPI-Key': process.env.API_KEY,
+          'X-RapidAPI-Host': 'car-api2.p.rapidapi.com',
+        },
+      })
       .then((res) => {
-        let data = res.data['Makes'].filter((make) => {
-          return make.make_is_common !== 0;
-        });
+        let data = res.data.data;
 
         data = data.map((item) => ({
-          make_display: item.make_display,
-          make_id: item.make_id,
+          make_display: item.name,
+          make_id: item.id,
         }));
         setMakes(data);
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const handleListingSubmit = async (e) => {
@@ -73,12 +87,24 @@ const SellForm = ({ setMessage, setIsLoading }) => {
         (make) => make.make_display === e.target.value
       )[0].make_id;
       axios
-        .get(
-          `https://www.carqueryapi.com/api/0.3/?cmd=getModels&make=${make_id}`
-        )
+        .get('https://car-api2.p.rapidapi.com/api/models', {
+          params: {
+            direction: 'asc',
+            sort: 'name',
+            year: '2020', // Free API I'm using is limiting queries to 2020 for non-paying users
+            verbose: 'yes',
+            make_id: make_id,
+          },
+          headers: {
+            'X-RapidAPI-Key': process.env.API_KEY,
+            'X-RapidAPI-Host': 'car-api2.p.rapidapi.com',
+          },
+        })
         .then((res) => {
-          setModels(res.data['Models']);
-        });
+          let data = res.data.data.map((item) => item.name);
+          setModels(data);
+        })
+        .catch((err) => console.log(err));
     }
   };
 

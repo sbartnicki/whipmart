@@ -6,12 +6,16 @@ import './style.scss';
 import { useEffect, useState } from 'react';
 import { loadQueriedListings } from '../../database';
 
+/**
+ * Page for displaying results of the car search
+ */
 const SearchResultsPage = () => {
   const { state } = useLocation();
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState('');
 
+  // State contains a query that is run through Firebase
   useEffect(() => {
     (async () => {
       const data = await loadQueriedListings(state);

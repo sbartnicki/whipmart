@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import './style.scss';
 
+/**
+ * Displays 404 page
+ */
 const NotFoundPage = () => {
   const navigate = useNavigate();
 

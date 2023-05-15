@@ -6,6 +6,11 @@ import SellForm from '../../components/SellForm';
 import './style.scss';
 import Loader from '../../components/Loader';
 
+/**
+ * Starting page component
+ * @returns
+ *  JSX of home page
+ */
 const HomePage = () => {
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);

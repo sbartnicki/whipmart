@@ -1,10 +1,16 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import './style.scss';
 
+/**
+ * Displays details page of single car
+ */
 const CarPage = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
 
+  // If someone tried to access the page via saved url there
+  // will be no selected car in the state, hence different return below
+  // TODO: implement protected routes
   if (!state) {
     return (
       <div className="empty">
@@ -14,6 +20,7 @@ const CarPage = () => {
     );
   }
 
+  // Displaying view of the selected car
   return (
     <div className="carPage">
       <div className="poster">
