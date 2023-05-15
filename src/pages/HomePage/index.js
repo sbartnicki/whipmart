@@ -5,6 +5,7 @@ import Search from '../../components/Search';
 import SellForm from '../../components/SellForm';
 import './style.scss';
 import Loader from '../../components/Loader';
+import React from 'react';
 
 /**
  * Starting page component

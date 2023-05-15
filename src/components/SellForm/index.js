@@ -28,7 +28,7 @@ const SellForm = ({ setMessage, setIsLoading }) => {
           sort: 'name',
         },
         headers: {
-          'X-RapidAPI-Key': process.env.API_KEY,
+          'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
           'X-RapidAPI-Host': 'car-api2.p.rapidapi.com',
         },
       })
@@ -46,6 +46,9 @@ const SellForm = ({ setMessage, setIsLoading }) => {
       });
   }, []);
 
+  /**
+   * Handles submission of the listing, validates input
+   */
   const handleListingSubmit = async (e) => {
     e.preventDefault();
     if (!newListing.make) {
@@ -96,7 +99,7 @@ const SellForm = ({ setMessage, setIsLoading }) => {
             make_id: make_id,
           },
           headers: {
-            'X-RapidAPI-Key': process.env.API_KEY,
+            'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
             'X-RapidAPI-Host': 'car-api2.p.rapidapi.com',
           },
         })

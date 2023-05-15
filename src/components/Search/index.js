@@ -28,7 +28,7 @@ const Search = ({ setMessage, make, from, to, model, modelsPrev }) => {
           sort: 'name',
         },
         headers: {
-          'X-RapidAPI-Key': process.env.API_KEY,
+          'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
           'X-RapidAPI-Host': 'car-api2.p.rapidapi.com',
         },
       })
@@ -68,7 +68,7 @@ const Search = ({ setMessage, make, from, to, model, modelsPrev }) => {
             make_id: make_id,
           },
           headers: {
-            'X-RapidAPI-Key': process.env.API_KEY,
+            'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
             'X-RapidAPI-Host': 'car-api2.p.rapidapi.com',
           },
         })
