@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './style.scss';
 import { saveListingToDB, uploadImage } from '../../database';
-import axios from 'axios';
+import * as restAPI from '../../restapi';
 
 /**
  * Displays a box that allows to create a new listing
@@ -19,22 +19,10 @@ const SellForm = ({ setMessage, setIsLoading }) => {
 
   const inputFile = useRef();
 
-  // TODO: extract axios logic to avoid repeating code, set axios config
   useEffect(() => {
-    axios
-      .get('https://car-api2.p.rapidapi.com/api/makes', {
-        params: {
-          direction: 'asc',
-          sort: 'name',
-        },
-        headers: {
-          'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-          'X-RapidAPI-Host': 'car-api2.p.rapidapi.com',
-        },
-      })
-      .then((res) => {
-        let data = res.data.data;
-
+    restAPI
+      .getMakes()
+      .then((data) => {
         data = data.map((item) => ({
           make_display: item.name,
           make_id: item.id,
@@ -93,22 +81,11 @@ const SellForm = ({ setMessage, setIsLoading }) => {
       const make_id = makes.filter(
         (make) => make.make_display === e.target.value
       )[0].make_id;
-      axios
-        .get('https://car-api2.p.rapidapi.com/api/models', {
-          params: {
-            direction: 'asc',
-            sort: 'name',
-            year: '2020', // Free API I'm using is limiting queries to 2020 for non-paying users
-            verbose: 'yes',
-            make_id: make_id,
-          },
-          headers: {
-            'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-            'X-RapidAPI-Host': 'car-api2.p.rapidapi.com',
-          },
-        })
+
+      restAPI
+        .getModels(make_id)
         .then((res) => {
-          let data = res.data.data.map((item) => item.name);
+          let data = res.map((item) => item.name);
           setModels(data);
         })
         .catch((err) => console.log(err));
@@ -150,8 +127,9 @@ const SellForm = ({ setMessage, setIsLoading }) => {
           <label>
             Select car model
             <select onChange={handleModelSelect}>
+              <option value="default">Choose from list</option>
               {models.map((model, index) => {
-                return <option key={index}>{model.model_name}</option>;
+                return <option key={index}>{model}</option>;
               })}
             </select>
           </label>

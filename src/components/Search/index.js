@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import './style.scss';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import * as restAPI from '../../restapi';
 
 /**
  * Component that allows to find a car by given parameters
  * and will navigate user to results page after search btn is pressed
  */
 const Search = ({ setMessage, make, from, to, model, modelsPrev }) => {
+  const navigate = useNavigate();
   const [makes, setMakes] = useState([]);
   const [models, setModels] = useState([]);
   const [carQuery, setCarQuery] = useState({
@@ -17,24 +18,11 @@ const Search = ({ setMessage, make, from, to, model, modelsPrev }) => {
     model: model || '',
   });
 
-  const navigate = useNavigate();
-
-  // TODO: extract axios logic to avoid repeating code, set axios config
+  // Fetching car makes upon mounting
   useEffect(() => {
-    axios
-      .get('https://car-api2.p.rapidapi.com/api/makes', {
-        params: {
-          direction: 'asc',
-          sort: 'name',
-        },
-        headers: {
-          'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-          'X-RapidAPI-Host': 'car-api2.p.rapidapi.com',
-        },
-      })
-      .then((res) => {
-        let data = res.data.data;
-
+    restAPI
+      .getMakes()
+      .then((data) => {
         data = data.map((item) => ({
           make_display: item.name,
           make_id: item.id,
@@ -46,6 +34,8 @@ const Search = ({ setMessage, make, from, to, model, modelsPrev }) => {
       });
   }, []);
 
+  // Setting the models to previously selected, so user doesn't have to select
+  // again after moving to results component. TODO: to be improved by state library
   useEffect(() => {
     if (!models.length && modelsPrev) {
       setModels(modelsPrev);
@@ -61,22 +51,11 @@ const Search = ({ setMessage, make, from, to, model, modelsPrev }) => {
       const make_id = makes.filter(
         (make) => make.make_display === e.target.value
       )[0].make_id;
-      axios
-        .get('https://car-api2.p.rapidapi.com/api/models', {
-          params: {
-            direction: 'asc',
-            sort: 'name',
-            year: '2020', // Free API I'm using is limiting queries to 2020 for non-paying users
-            verbose: 'yes',
-            make_id: make_id,
-          },
-          headers: {
-            'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-            'X-RapidAPI-Host': 'car-api2.p.rapidapi.com',
-          },
-        })
+
+      restAPI
+        .getModels(make_id)
         .then((res) => {
-          let data = res.data.data.map((item) => item.name);
+          let data = res.map((item) => item.name);
           setModels(data);
         })
         .catch((err) => console.log(err));
